@@ -6,6 +6,7 @@ import { useFormik } from "formik";
 import { registerValidation } from "../helper/validate";
 import convertToBase64 from "../helper/convert";
 import { registerUser } from "../helper/helper";
+
 import styles from "../styles/Username.module.css";
 
 export default function Register() {
@@ -26,9 +27,10 @@ export default function Register() {
       let registerPromise = registerUser(values);
       toast.promise(registerPromise, {
         loading: "Creating...",
-        success: <b>Register Sucessfully...!</b>,
+        success: <b>Register Successfully...!</b>,
         error: <b>Could not Register.</b>,
       });
+
       registerPromise.then(function () {
         navigate("/");
       });
@@ -46,7 +48,10 @@ export default function Register() {
       <Toaster position="top-center" reverseOrder={false}></Toaster>
 
       <div className="flex justify-center items-center h-screen">
-        <div className={styles.glass} style={{ width: "45%" }}>
+        <div
+          className={styles.glass}
+          style={{ width: "45%", paddingTop: "3em" }}
+        >
           <div className="title flex flex-col items-center">
             <h4 className="text-5xl font-bold">Register</h4>
             <span className="py-4 text-xl w-2/3 text-center text-gray-500">
@@ -63,6 +68,7 @@ export default function Register() {
                   alt="avatar"
                 />
               </label>
+
               <input
                 onChange={onUpload}
                 type="file"
